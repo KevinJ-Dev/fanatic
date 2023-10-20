@@ -4,33 +4,130 @@ import { motion } from 'framer-motion';
 
 import styles from '../styles';
 import { navVariants } from '../utils/motion';
+import React, { useState } from 'react';
 
-const Navbar = () => (
-  <motion.nav
-    variants={navVariants}
-    initial="hidden"
-    whileInView="show"
-    className={`${styles.xPaddings} py-8 relative`}
-  >
-    <div className="absolute w-[50%] inset-0 gradient-01" />
-    <div
-      className={`${styles.innerWidth} mx-auto flex justify-between gap-8`}
+const Navbar = () => {
+  const [isClick, setisClick] = useState(false);
+
+  const toggleNavbar = () => {
+    setisClick(!isClick);
+  };
+
+  return (
+    <motion.nav
+      variants={navVariants}
+      initial="hidden"
+      whileInView="show"
+      className={`${styles.xPaddings} py-8 relative`}
     >
-      <img
-        src="/search.svg"
-        alt="search"
-        className="w-[24px] h-[24px] object-contain"
-      />
-      <h2 className="font-extrabold text-[24px] leading-[30.24px] text-white">
-        FANATIC ROLEPLAY
-      </h2>
-      <img
-        src="/menu.svg"
-        alt="menu"
-        className="w-[24px] h-[24px] object-contain"
-      />
-    </div>
+
+    <nav className="bg-transparent">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center">
+            <div className="flex-shrink-0">
+              <a href="/" className="text-white">
+                <img src="/logo.png" className="sm:w-[100px] w-[100px] sm:h-[100px] h-[100px] object-contain" alt="" />
+              </a>
+            </div>
+          </div>
+
+          <div className="hidden md:block">
+            <div className="ml-4 flex items-center space-x-4">
+              <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                Accueil
+              </a>
+
+              <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                Général
+              </a>
+
+              <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                Légale
+              </a>
+
+              <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                Illégale
+              </a>
+
+              <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                Top serveur
+              </a>
+
+              <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
+                Boutique
+              </a>
+            </div>
+          </div>
+
+          <div className="md:hidden flex items-center">
+            <button className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white
+            focus:outline-none focus:ring-inset focus:ring-white" onClick={toggleNavbar}
+            >
+              {isClick ? (
+                <svg  className="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor" >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              ) : (
+                <svg  className="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16m-7 6h7"/>
+                  </svg>
+              )}
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      {isClick && (
+        
+        <div className="md:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a href="/" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
+                Accueil
+              </a>
+
+              <a href="/" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
+                Général
+              </a>
+
+              <a href="/" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
+                Légale
+              </a>
+
+              <a href="/" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
+                Illégale
+              </a>
+
+              <a href="/" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
+                Top serveur
+              </a>
+
+              <a href="/" className="text-white block hover:bg-white hover:text-black rounded-lg p-2">
+                Boutique
+              </a>
+          </div>
+        </div>
+      )}
+
+    </nav>
   </motion.nav>
-);
+)};
 
 export default Navbar;
